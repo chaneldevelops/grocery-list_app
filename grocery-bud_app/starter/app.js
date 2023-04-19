@@ -14,6 +14,9 @@ let editID = "";
 // ****** EVENT LISTENERS **********
 // submit form
 form.addEventListener('submit', addItem)
+// clear items
+clearBtn.addEventListener('click', clearItems)
+
 // ****** FUNCTIONS **********
 function addItem(e) {
     e.preventDefault(); // prevents default behavior
@@ -65,10 +68,26 @@ function displayAlert(text, action) {
     alert.classList.add(`alert-${action}`); // this is pulled from the ID's in css to display a pop-up if somoene submits an empty value
 
     // remove alert
-    setTimeout(function(){ // setTimeout looks for a callback function (the function that will run) and then how long it will be invoked (in 1 second)
-        alert.textContent = '';  // set to an empty string
-    alert.classList.remove(`alert-${action}`); // remove has been added
+    setTimeout(function(){ // setTimeout looks for a callback function (the function that will run) and then how long it will be invoked (in 1 second).
+        alert.textContent = '';  // set to an empty string.
+    alert.classList.remove(`alert-${action}`); // remove has been added.
     }, 2000)
+}
+
+// clear items
+function clearItems(){
+    const items = document.querySelectorAll('.grocery-item');
+
+    if (items.length > 0){ // this will be at least one of the items
+        items.forEach(function(item){
+            list.removeChild(item)
+        });
+    }
+    container.classList.remove("show-container"); // clears out the clear items option.
+    displayAlert("empty list", "danger"); // re-used the displayAlert to send a pop-up saying Empty list after the container above is removed.
+    setBackToDefault(); // this sets everything back  to default when choosing to delete after editing is in progress for example.
+    // localStorage.removeItem('list'); // this removes list from local storage.
+
 }
 
 // set back to defult
