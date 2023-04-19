@@ -102,6 +102,9 @@ function clearItems(){
 function deleteItem(e){  // e is the event object
     const element = e.currentTarget.parentElement.parentElement; // there are 2 parentElement's because we have to go up two levels to get to the targeted parent element.
     list.removeChild(element);
+    if (list.children.length === 0) {
+        container.classList.remove("show-container")
+    }
 
 }
 // edit function
