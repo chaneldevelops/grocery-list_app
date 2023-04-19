@@ -99,8 +99,10 @@ function clearItems(){
 }
 
 // delete function
-function deleteItem(){
-    console.log('item deleted');
+function deleteItem(e){  // e is the event object
+    const element = e.currentTarget.parentElement.parentElement; // there are 2 parentElement's because we have to go up two levels to get to the targeted parent element.
+    list.removeChild(element);
+
 }
 // edit function
 function editItem(){
