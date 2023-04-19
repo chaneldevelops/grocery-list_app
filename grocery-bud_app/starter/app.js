@@ -40,19 +40,27 @@ function addItem(e) {
             <button type="button" class="delete-btn">
                 <i class="fas fa-trash"></i>
             </div>`; 
-            // append child
-            list.appendChild(element);
-            // display alert
-            displayAlert('itme added to the list', 'success');
-            // show container
-            container.classList.add("show-container");
-           
-           //***** local and default are placeholders ******
-            // add to local storage
-            addToLocalStorage(id, value);
 
-            // set back to default
-            setBackToDefault();
+        // variables for delete and edit buttons
+        const deleteBtn = element.querySelector('.delete-btn');
+        const editBtn = element.querySelector('.edit-btn');
+        // Add event listeners
+        deleteBtn.addEventListener('click', deleteItem); // the function is the 2nd paramater for both
+        editBtn.addEventListener('click', editItem);
+        
+        // append child
+        list.appendChild(element);
+        // display alert
+        displayAlert('itme added to the list', 'success');
+        // show container
+        container.classList.add("show-container");
+           
+        //***** local and default are placeholders ******
+        // add to local storage
+        addToLocalStorage(id, value);
+
+        // set back to default
+        setBackToDefault();
     }else if(value && editFlag) { // only once you click to edit. Also this says if value is true and if editFlag is true
         console.log('editing')
     }
@@ -89,6 +97,16 @@ function clearItems(){
     // localStorage.removeItem('list'); // this removes list from local storage.
 
 }
+
+// delete function
+function deleteItem(){
+    console.log('item deleted');
+}
+// edit function
+function editItem(){
+    console.log('edit item');
+}
+
 
 // set back to defult
 function setBackToDefault(){
